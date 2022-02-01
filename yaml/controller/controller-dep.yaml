@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    controller: image-clone-controller
+  name: image-controller
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-clone-controller
+  namespace: image-controller
+  labels:
+    controller: image-clone-controller
+spec:
+  selector:
+    matchLabels:
+      controller: image-clone-controller
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        controller: image-clone-controller
+    spec:
+      securityContext:
+        runAsUser: 2121
+      serviceAccountName: controller-sa
+      containers:
+      - image: backupregistry/image-clone-controller:v2
+        name: image-controller
+        env:
+        - name: REPOSITORY
+          value: backupregistry
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: registry-secret
+              key: registry-username 
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: registry-secret
+              key: registry-passowrd
+        securityContext:
+          allowPrivilegeEscalation: false
+        resources:
+          limits:
+            cpu: 100m
+            memory: 30Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
+      terminationGracePeriodSeconds: 10
+      

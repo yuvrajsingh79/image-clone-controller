@@ -1,0 +1,13 @@
+# Bind the Service Account with the Role Privileges.
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: controller-role-binding
+subjects:
+- kind: ServiceAccount
+  name: controller-sa
+  namespace: image-controller
+roleRef:
+  kind: ClusterRole
+  name: controller-role
+  apiGroup: rbac.authorization.k8s.io
