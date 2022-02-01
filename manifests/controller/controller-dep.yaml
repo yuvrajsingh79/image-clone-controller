@@ -26,29 +26,28 @@ spec:
         runAsUser: 2121
       serviceAccountName: controller-sa
       containers:
-      - image: backupregistry/image-clone-controller:v2
-        name: image-controller
-        env:
-        - name: REPOSITORY
-          value: backupregistry
-        - name: USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: registry-secret
-              key: registry-username 
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: registry-secret
-              key: registry-passowrd
-        securityContext:
-          allowPrivilegeEscalation: false
-        resources:
-          limits:
-            cpu: 100m
-            memory: 30Mi
-          requests:
-            cpu: 100m
-            memory: 20Mi
+        - image: backupregistry/image-clone-controller:v2
+          name: image-controller
+          env:
+            - name: REPOSITORY
+              value: backupregistry1
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: registry-secret
+                  key: registry-username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: registry-secret
+                  key: registry-passowrd
+          securityContext:
+            allowPrivilegeEscalation: false
+          resources:
+            limits:
+              cpu: 100m
+              memory: 30Mi
+            requests:
+              cpu: 100m
+              memory: 20Mi
       terminationGracePeriodSeconds: 10
-      

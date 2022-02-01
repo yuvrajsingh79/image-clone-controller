@@ -23,3 +23,5 @@ $ kubectl create -f manifests/controller/controller-secret.yaml
 $ kubectl create -f manifests/rbac
 $ kubectl create -f manifests/controller/controller-dep.yaml
 ```
+
+- Note : Replace the username and password in secret file manifests/controller/controller-secret.yaml with your docker credentials.
