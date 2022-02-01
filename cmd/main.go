@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	controller "github.com/kubermatic/image-clone-controller/pkg/controller"
+	controller "github.com/yuvrajsingh79/image-clone-controller/pkg/controller"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"k8s.io/client-go/kubernetes"

@@ -1,4 +1,4 @@
-module github.com/kubermatic/image-clone-controller
+module github.com/yuvrajsingh79/image-clone-controller
 
 go 1.17
 
